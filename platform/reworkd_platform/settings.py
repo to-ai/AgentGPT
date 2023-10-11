@@ -1,4 +1,6 @@
 import platform
+import os
+from dotenv import load_dotenv
 from pathlib import Path
 from tempfile import gettempdir
 from typing import List, Optional, Literal, Union
@@ -7,6 +9,8 @@ from pydantic import BaseSettings
 from yarl import URL
 
 from reworkd_platform.constants import ENV_PREFIX
+
+load_dotenv()
 
 TEMP_DIR = Path(gettempdir())
 
@@ -53,7 +57,7 @@ class Settings(BaseSettings):
 
     # OpenAI
     openai_api_base: str = "https://api.openai.com/v1"
-    openai_api_key: str = "<Should be updated via env>"
+    openai_api_key: str = os.environ.get("REWORKD_PLATFORM_OPENAI_API_KEY")
     openai_api_version: str = "2023-08-01-preview"
     azure_openai_deployment_name: str = "<Should be updated via env if using azure>"
 
@@ -71,11 +75,11 @@ class Settings(BaseSettings):
     allowed_origins_regex: Optional[str] = None
 
     # Variables for the database
-    db_host: str = "localhost"
-    db_port: int = 3307
-    db_user: str = "reworkd_platform"
-    db_pass: str = "reworkd_platform"
-    db_base: str = "reworkd_platform"
+    db_host: str = os.environ["REWORKD_PLATFORM_DATABASE_HOST"]
+    db_port: int = os.environ["REWORKD_PLATFORM_DATABASE_PORT"]
+    db_user: str = os.environ["REWORKD_PLATFORM_DATABASE_USER"]
+    db_pass: str = os.environ["REWORKD_PLATFORM_DATABASE_PASSWORD"]
+    db_base: str = os.environ["REWORKD_PLATFORM_DATABASE_NAME"]
     db_echo: bool = False
     db_ca_path: Optional[str] = None
 

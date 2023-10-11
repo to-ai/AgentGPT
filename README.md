@@ -34,6 +34,17 @@ For the best demo experience, try [our site](https://agentgpt.reworkd.ai) direct
 
 [Demo Video](https://github.com/reworkd/AgentGPT/assets/50181239/5348e44a-29a5-4280-a06b-fe1429a8d99e)
 
+## 🚀 Tech Stack
+
+- ✅ **Bootstrapping**: [create-t3-app](https://create.t3.gg) + [FastAPI-template](https://github.com/s3rius/FastAPI-template).
+- ✅ **Framework**: [Nextjs 13 + Typescript](https://nextjs.org/) + [FastAPI](https://fastapi.tiangolo.com/)
+- ✅ **Auth**: [Next-Auth.js](https://next-auth.js.org)
+- ✅ **ORM**: [Prisma](https://prisma.io) & [SQLModel](https://sqlmodel.tiangolo.com/).
+- ✅ **Database**: [Planetscale](https://planetscale.com/).
+- ✅ **Styling**: [TailwindCSS + HeadlessUI](https://tailwindcss.com).
+- ✅ **Schema Validation**: [Zod](https://github.com/colinhacks/zod) + [Pydantic](https://docs.pydantic.dev/).
+- ✅ **LLM Tooling**: [Langchain](https://github.com/hwchase17/langchain).
+
 
 ## 👨‍🚀 Getting Started
 
@@ -79,11 +90,32 @@ Before you get started, please make sure you have the following installed:
 4. **Follow the setup instructions from the script** - add the appropriate API keys, and once all of the services are running, travel to [http://localhost:3000](http://localhost:3000) on your web-browser.
 
 ## Installation without Docker
+
+Outside of docker, you'll need to just configure your ENV. Additionally, you can use `setup.sh` to walkthrough ENV configuration and also update your Prisma configuration to point to a local SQLite instance.
+
+After this, you can run the following to set up your Next.js project.
+
 1. **Frontend**
 ```
 cd ./next
 npm install 
 npm run dev
+```
+
+Create tables / migrations
+```
+  Create a migration from changes in Prisma schema, apply it to the database, trigger generators (e.g. Prisma Client)
+  $ npx prisma migrate dev
+
+  Reset your database and apply all migrations
+  $ npx prisma migrate reset
+
+  Apply pending migrations to the database in production/staging
+  $ npx prisma migrate deploy
+
+  Check the status of migrations in the production/staging database
+  $ npx prisma migrate status
+
 ```
 
 2. **backend**
@@ -104,13 +136,4 @@ poetry run python -m reworkd_platform
 Happy hacking! :tada:
 
 
-## 🚀 Tech Stack
 
-- ✅ **Bootstrapping**: [create-t3-app](https://create.t3.gg) + [FastAPI-template](https://github.com/s3rius/FastAPI-template).
-- ✅ **Framework**: [Nextjs 13 + Typescript](https://nextjs.org/) + [FastAPI](https://fastapi.tiangolo.com/)
-- ✅ **Auth**: [Next-Auth.js](https://next-auth.js.org)
-- ✅ **ORM**: [Prisma](https://prisma.io) & [SQLModel](https://sqlmodel.tiangolo.com/).
-- ✅ **Database**: [Planetscale](https://planetscale.com/).
-- ✅ **Styling**: [TailwindCSS + HeadlessUI](https://tailwindcss.com).
-- ✅ **Schema Validation**: [Zod](https://github.com/colinhacks/zod) + [Pydantic](https://docs.pydantic.dev/).
-- ✅ **LLM Tooling**: [Langchain](https://github.com/hwchase17/langchain).
